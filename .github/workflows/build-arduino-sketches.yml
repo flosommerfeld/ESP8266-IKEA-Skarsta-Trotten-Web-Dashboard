@@ -1,0 +1,13 @@
+# This workflow builds all sketches and checks if they compile
+
+name: Arduino sketch build
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build all sketches
+      uses: Legion2/arduino-builder-action@v2.0.0
+      with:
+        board: "arduino:avr:leonardo"
