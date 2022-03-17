@@ -63,9 +63,9 @@ const char MAIN_page[] PROGMEM = R"=====(
                     <ul class="list-unstyled mt-3 mb-4">
                        <li>Höhenverstellung auf voreingestellte Modi</li>
                     </ul>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/mode/1">Modus 1 - 100 cm</a>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/mode/2">Modus 2 - 125 cm</a>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/mode/3">Modus 3 - 150 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/100">Modus 1 - 100 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/125">Modus 2 - 125 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/150">Modus 3 - 150 cm</a>
                  </div>
               </div>
            </div>
