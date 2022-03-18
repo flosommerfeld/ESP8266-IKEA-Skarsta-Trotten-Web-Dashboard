@@ -136,7 +136,9 @@ void setup(void) {
  */
 void raiseTable() {
   digitalWrite(motor_driver_dir, HIGH);
-  analogWrite(motor_driver_pwm, motor_speed);
+  if(MAX_HEIGHT > current_height){
+    analogWrite(motor_driver_pwm, motor_speed);
+  }
 }
 
 
@@ -145,7 +147,9 @@ void raiseTable() {
  */
 void lowerTable() {
   digitalWrite(motor_driver_dir, LOW);
-  analogWrite(motor_driver_pwm, motor_speed);
+  if(MIN_HEIGHT < current_height){
+    analogWrite(motor_driver_pwm, motor_speed);
+  }
 }
 
 
