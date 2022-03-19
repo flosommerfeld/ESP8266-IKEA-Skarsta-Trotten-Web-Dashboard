@@ -6,6 +6,7 @@
 #include <uri/UriRegex.h>
 #include "index.h"
 #include <HCSR04.h>
+#include "CytronMotorDriver.h"
 
 /* WiFi configuration */
 #ifndef STASSID
@@ -22,7 +23,13 @@ const char *password = STAPSK;
 #define echoPin D7 // HC-SR04 ultrasonic sensor - Echo Pin 
 #define trigPin D6 // HC-SR04 ultrasonic sensor - Trigger Pin
 
-ESP8266WebServer server(80); // server initialisation
+/* Configure ESP8266 web server */
+ESP8266WebServer server(80); // use port 80
+
+/* Configure the motor driver */
+CytronMD motor(PWM_DIR, motor_driver_pwm, motor_driver_dir);
+
+/* Configure ultrasonic sensor */
 HCSR04 hc(trigPin, echoPin); // initialisation HCSR04 (ultrasonic sensor) (trig pin , echo pin)
 
 /* States of the system */
@@ -30,7 +37,7 @@ typedef enum {
   UP, // table is supposed to go up
   DOWN, // table is supposed to go down
   HOLD, // table is supposed to do nothing -> hold still
-  CUSTOM_HEIGHT
+  CUSTOM_HEIGHT // table goes up/down and holds as soon as it reached the custom height
 } state_t;
 
 /* Global state of the system. In HOLD by default -> motor will not move in this state */
@@ -137,9 +144,8 @@ void setup(void) {
  * Raise the table
  */
 void raiseTable() {
-  digitalWrite(motor_driver_dir, HIGH);
   if(MAX_HEIGHT > current_height){
-    analogWrite(motor_driver_pwm, motor_speed);
+   motor.set_speed(motor_speed)
   }
 }
 
@@ -148,9 +154,8 @@ void raiseTable() {
  * Lower the table
  */
 void lowerTable() {
-  digitalWrite(motor_driver_dir, LOW);
   if(MIN_HEIGHT < current_height){
-    analogWrite(motor_driver_pwm, motor_speed);
+    motor.set_speed(-motor_speed) // two's complement for negating the integer
   }
 }
 
@@ -159,7 +164,7 @@ void lowerTable() {
  * Stop the table at the current height
  */
 void stopTable() {
-  analogWrite(motor_driver_pwm, 0);
+   motor.set_speed(0)
 }
 
 
