@@ -16,12 +16,14 @@ const char *ssid = STASSID;
 const char *password = STAPSK;
 
 /* Pin configuration */
-#define motor_driver_pwm 4 // pwm pin for the motor driver board
-#define motor_driver_dir 3 // direction pin for the motor driver board
+#define motor_driver_pwm D4 // pwm pin for the motor driver board
+#define motor_driver_dir D3 // direction pin for the motor driver board
 #define motor_speed 255 // speed of the motor from 0-250
+#define echoPin D7 // HC-SR04 ultrasonic sensor - Echo Pin 
+#define trigPin D6 // HC-SR04 ultrasonic sensor - Trigger Pin
 
 ESP8266WebServer server(80); // server initialisation
-HCSR04 hc(5, 6); // initialisation class HCSR04 (ultrasonic sensor) (trig pin , echo pin)
+HCSR04 hc(trigPin, echoPin); // initialisation HCSR04 (ultrasonic sensor) (trig pin , echo pin)
 
 /* States of the system */
 typedef enum {
