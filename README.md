@@ -3,7 +3,7 @@
 
 Web Dashboard for controlling a Ikea Skarsta/Trotten table which comes from the factory with manual height adjustment.
 
-The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison this project uses a website ("web dashboard") for controlling the table height. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
+The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison this project uses a website ("web dashboard") for controlling the table height and a ultrasonic sensor for measuring the height instead of an optical endstop. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
 
 ## Showcase
 TBD
@@ -21,7 +21,12 @@ Body1.stl ([Download](https://content.instructables.com/ORIG/FHK/3039/KJWV4CPV/F
 
 ## Finite State Machine
 The implementation is based on the following FSM:
-TBD
+![](res/fsm.png)
+
+All state transitions (excepct transitions to the current state) are done when the user requests something via the Web Dashboard through the following routes:
+
+-  `/motor/<string: action>/` with `action` being `up`, `down`, `stop`
+- `/height/<string: height_in_cm>/` with `height_in_cm` in the range from `60` to `160`.
 
 ## Dependencies
 Used dependencies for this project are:

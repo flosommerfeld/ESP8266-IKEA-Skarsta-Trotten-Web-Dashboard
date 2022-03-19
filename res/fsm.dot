@@ -1,0 +1,31 @@
+digraph finite_state_machine {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	rankdir=LR;
+	node [shape = doublecircle]; HOLD;
+	node [shape=point]; ENTRY;
+	node [shape = circle];
+	
+	ENTRY -> HOLD;
+	
+	HOLD -> UP ;
+	HOLD -> DOWN;
+	HOLD -> HOLD;
+	HOLD -> CUSTOM_HEIGHT;
+	
+	UP -> UP;
+	UP -> DOWN;
+	UP -> HOLD;
+	UP -> CUSTOM_HEIGHT;
+	
+	DOWN -> UP;
+	DOWN -> DOWN;
+	DOWN -> HOLD;
+	DOWN -> CUSTOM_HEIGHT;
+	
+	CUSTOM_HEIGHT -> UP;
+	CUSTOM_HEIGHT -> DOWN;
+	CUSTOM_HEIGHT -> HOLD;
+	CUSTOM_HEIGHT -> CUSTOM_HEIGHT;
+}
