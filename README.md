@@ -13,7 +13,7 @@ TBD
 
 ## 3D Model
 As previously mentioned, the [3D models](#credits) of user pashiran were used in this project.
-Small holes were drilled into the table in order to screwing the `Body1.stl` with M3 screws to it. After installing `Body1.stl`, the  `Body3.stl` (case) was screwed on to it.  Some M3 insert nuts were installed to `Body1.stl` with a soldering iron.
+Small holes were drilled into the table in order to screw the `Body1.stl` with M3 screws to it. After installing `Body1.stl`, the  `Body3.stl` (case) was screwed on to it.  Some M3 insert nuts were installed to `Body1.stl` with a soldering iron.
 
 Body1.stl ([Download](https://content.instructables.com/ORIG/FHK/3039/KJWV4CPV/FHK3039KJWV4CPV.stl)) | Body3.stl ([Download](https://content.instructables.com/ORIG/F6Q/4HMT/KJWV4CPX/F6Q4HMTKJWV4CPX.stl))
 --- | ---
@@ -23,7 +23,8 @@ Body1.stl ([Download](https://content.instructables.com/ORIG/FHK/3039/KJWV4CPV/F
 The implementation is based on the following FSM:
 ![](res/fsm.png)
 
-All state transitions (excepct transitions to the current state) are done when the user requests something via the Web Dashboard through the following routes:
+State transitions to the current state i.e. `UP`->`UP` happen when the user requests nothing after requesting the table to go up. The implementation takes care of stopping if the user hasn't stopped the table manually before reaching the maximum height and vice versa. `CUSTOM_HEIGHT` automatically transitions to `HOLD` whenever the requested height has been reached.
+All other state transitions are done when the user requests something via the Web Dashboard through the following routes:
 
 -  `/motor/<string: action>/` with `action` being `up`, `down`, `stop`
 - `/height/<string: height_in_cm>/` with `height_in_cm` in the range from `60` to `160`.
