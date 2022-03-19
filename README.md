@@ -1,5 +1,19 @@
-# ESP8266-Ikea-Skarsta-WebDashboard
+# ESP8266-Ikea-Skarsta-Trotten-Web-Dashboard
 ![arduino build workflow](https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/actions/workflows/build-arduino-sketches.yml/badge.svg)
+
+Web Dashboard for controlling a Ikea Skarsta/Trotten table which comes from the factory with manual height adjustment.
+
+The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pasharin. In comparison this project uses a website ("web dashboard") for controlling the table height. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
+
+## Showcase
+TBD
+
+## Circuit
+TBD
+
+## Finite State Machine
+The implementation is based on the following FSM:
+TBD
 
 ## Dependencies
 Used dependencies for this project are:
@@ -28,6 +42,8 @@ The dependencies can be installed via the [standard procedure for installing Ard
 - [3D Print](#credits)
 - Table
     - [Ikea Skarsta/Trotten](https://www.ikea.com/nl/nl/p/skarsta-trotten-bureau-zit-sta-beige-wit-s29477959/)
+
+Total costs approx. 48 € if you are patient enough to wait for the Aliexpress delivieries from China. The table and 3D printed model are not included in my calculation.
 
 ## Credits
 - [3D design files](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) by user pashiran
