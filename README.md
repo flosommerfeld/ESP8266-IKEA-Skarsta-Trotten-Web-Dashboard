@@ -3,13 +3,21 @@
 
 Web Dashboard for controlling a Ikea Skarsta/Trotten table which comes from the factory with manual height adjustment.
 
-The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pasharin. In comparison this project uses a website ("web dashboard") for controlling the table height. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
+The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison this project uses a website ("web dashboard") for controlling the table height. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
 
 ## Showcase
 TBD
 
 ## Circuit
 TBD
+
+## 3D Model
+As previously mentioned, the [3D models](#credits) of user pashiran were used in this project.
+Small holes were drilled into the table in order to screwing the `Body1.stl` with M3 screws to it. After installing `Body1.stl`, the  `Body3.stl` (case) was screwed on to it.  Some M3 insert nuts were installed to `Body1.stl` with a soldering iron.
+
+Body1.stl ([Download](https://content.instructables.com/ORIG/FHK/3039/KJWV4CPV/FHK3039KJWV4CPV.stl)) | Body3.stl ([Download](https://content.instructables.com/ORIG/F6Q/4HMT/KJWV4CPX/F6Q4HMTKJWV4CPX.stl))
+--- | ---
+![](res/body1.png) | ![](res/body3.png)
 
 ## Finite State Machine
 The implementation is based on the following FSM:
