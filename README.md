@@ -9,7 +9,8 @@ The hardware selection and 3D models of this project are mainly based on the [In
 TBD
 
 ## Circuit
-TBD
+This circuit ([source file](res/circuit.fzz)) was designed with [Fritzing](https://fritzing.org/).
+![](res/circuit.png)
 
 ## 3D Model
 As previously mentioned, the [3D models](#credits) of user pashiran were used in this project.
