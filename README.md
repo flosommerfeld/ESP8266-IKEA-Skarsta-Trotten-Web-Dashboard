@@ -49,7 +49,7 @@ The dependencies can be installed via the [standard procedure for installing Ard
 - Motor Driver Board:
     - [Cytron MD10C 10Amp 5V-30V DC Motor Driver](https://www.cytron.io/p-10amp-5v-30v-dc-motor-driver)
 - Power Adapter
-    - [Arote LED Trafo with 5.5x2.1mm Female Terminal Block 2 pin, Input: 12V 5A, Output: AC110-240V, 60W:](https://www.amazon.de/Netzteil-Netzadapter-Transformator-Kaltger%C3%A4testecker-Streifen/dp/B07FNMKTBL/ref=sr_1_11?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=233AIX93POJ85&keywords=12v+5a+ledmo&qid=1650661898&s=lighting&sprefix=12v+5a+ledmo%2Clighting%2C62&sr=1-11)
+    - [Arote LED Trafo with 5.5x2.1mm Female Terminal Block 2 pin, Output: 12V 5A, Input: AC110-240V, 60W:](https://www.amazon.de/Netzteil-Netzadapter-Transformator-Kaltger%C3%A4testecker-Streifen/dp/B07FNMKTBL/ref=sr_1_11?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=233AIX93POJ85&keywords=12v+5a+ledmo&qid=1650661898&s=lighting&sprefix=12v+5a+ledmo%2Clighting%2C62&sr=1-11)
 - Shaft Coupling (6x7mm):
     - [D19L25 6x7mm](https://de.aliexpress.com/item/32874492868.html?gatewayAdapt=glo2deu&spm=a2g0o.order_list.0.0.21ef5c5fNLvT1b)
 - 6mm hex wrench (cut the bent part)
