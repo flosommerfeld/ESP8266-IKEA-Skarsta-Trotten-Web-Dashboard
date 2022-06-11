@@ -61,7 +61,7 @@ int g_custom_height;
 /* 
  * Displays the index/main page in the browser of the client
  */
-void displayIndex() {
+void display_index() {
  String s = MAIN_page; // read HTML contents
  server.send(200, "text/html", s); // send web page
 }
@@ -71,7 +71,7 @@ void displayIndex() {
  * The server sends a redirection response to the client so it will go back to the homepage after requesting a state change,
  * e.g. when motor up was clicked it shall go back to the homepage
  */
-void sendHomepageRedirection(){
+void send_homepage_redirection(){
   server.sendHeader("Location","/"); // Client shall redirect to "/"
   server.send(303);
 }
@@ -81,7 +81,7 @@ void sendHomepageRedirection(){
  * if for example /motor/up is called, then the system will transition from the previous state
  * to the state UP. 
  */
-void handleMotorRequests() {
+void handle_motor_requests() {
   String action = server.pathArg(0); // retrieve the given argument/action
 
   if(action == "up"){
@@ -98,7 +98,7 @@ void handleMotorRequests() {
   }
 
   // send response
-  sendHomepageRedirection();
+  send_homepage_redirection();
 }
 
 
@@ -106,7 +106,7 @@ void handleMotorRequests() {
  * Handles calls to the URI /height/<string: height_in_cm>/
  * If a height is given, then the system shall transition into the CUSTOM_HEIGHT state.
  */
-void handleHeightRequests() {
+void handle_height_requests() {
   int height = atoi((server.pathArg(0)).c_str()); // convert string parameter to integer
 
   // only change the state if the given height is in the height boundaries
@@ -116,7 +116,7 @@ void handleHeightRequests() {
   }
 
   // send response
-  sendHomepageRedirection();
+  send_homepage_redirection();
 }
 
 /**
@@ -169,8 +169,8 @@ void print_connection_info(){
  */
 void register_server_routes(){
   server.on(F("/"), displayIndex); // route: /
-  server.on(UriBraces("/motor/{}"), handleMotorRequests); // route: /motor/<string: action>/
-  server.on(UriBraces("/height/{}"), handleHeightRequests); // route: /height/<string: height_in_cm>/ 
+  server.on(UriBraces("/motor/{}"), handle_motor_requests); // route: /motor/<string: action>/
+  server.on(UriBraces("/height/{}"), handle_height_requests); // route: /height/<string: height_in_cm>/ 
 }
 
 /*
@@ -197,7 +197,7 @@ void setup(void) {
  * Retrieves the current height of the table by getting the distance of the
  * ultrasonic sensor.
  */
-int getCurrentHeight(){
+int get_current_height(){
   delay(100); // 60 ms measurement cycle to prevent trigger signal to the echo signal
   Serial.print("Current table height");
   Serial.println(hc.dist());
@@ -208,8 +208,8 @@ int getCurrentHeight(){
 /*
  * Raise the table until the max height is reached
  */
-void raiseTable() {
-  if(MAX_HEIGHT >= getCurrentHeight()){
+void raise_table() {
+  if(MAX_HEIGHT >= get_current_height()){
    motor.setSpeed(motor_speed);
   }
   else {
@@ -221,8 +221,8 @@ void raiseTable() {
 /*
  * Lower the table until the min height is reached
  */
-void lowerTable() {
-  if(MIN_HEIGHT <= getCurrentHeight()){
+void lower_table() {
+  if(MIN_HEIGHT <= get_current_height()){
     motor.setSpeed(-motor_speed); // two's complement for negating the integer
   }
   else {
@@ -234,7 +234,7 @@ void lowerTable() {
 /*
  * Stop the table at the current height
  */
-void stopTable() {
+void stop_table() {
    motor.setSpeed(0);
 }
 
@@ -242,26 +242,26 @@ void stopTable() {
 /*
  * Controls the motor based on the system state g_system_state. This is pretty much the core FSM implementation for the state transistions.
  */
-void handleOutput(){
+void handle_output(){
   switch (g_system_state) {
         case UP:
-            raiseTable(); // motor go up
+            raise_table(); // motor go up
             break;
         case DOWN:
-            lowerTable(); // motor go down
+            lower_table(); // motor go down
             break;
         case HOLD:
-            stopTable(); // stop the motor
+            stop_table(); // stop the motor
             break;
         case CUSTOM_HEIGHT:
           // adjust the table height until the height tolerance is ok, e.g.: abs(150-130) = 20, abs(150-170) = 20
-          while(abs(g_custom_height - getCurrentHeight()) >= HEIGHT_TOLERANCE){
+          while(abs(g_custom_height - get_current_height()) >= HEIGHT_TOLERANCE){
             // check if the table is too high or too low and adjust
-            if(g_custom_height < getCurrentHeight()){
-              lowerTable(); // lower the table
+            if(g_custom_height < get_current_height()){
+              lower_table(); // lower the table
             }
             else{
-              raiseTable(); // raise the table
+              raise_table(); // raise the table
             }
             
           }
@@ -283,5 +283,5 @@ void handleOutput(){
  */
 void loop(void) {
   server.handleClient(); // gets input from a client
-  handleOutput(); // controls the height of the table based on the input
+  handle_output(); // controls the height of the table based on the input
 }
