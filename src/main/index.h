@@ -63,6 +63,8 @@ const char MAIN_page[] PROGMEM = R"=====(
                     <ul class="list-unstyled mt-3 mb-4">
                        <li>Predefined modes</li>
                     </ul>
+                    <div id="mode-container"><!-- This is the element into which the modes from the local storage will be loaded --></div>
+                    
                     <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/75">Mode 1 - 75 cm</a>
                     <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/125">Mode 2 - 125 cm</a>
                     <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/150">Mode 3 - 150 cm</a>
@@ -70,6 +72,63 @@ const char MAIN_page[] PROGMEM = R"=====(
               </div>
            </div>
         </div>
+
+         <script>
+            const LOCALSTORAGE_ITEM_NAME = "modes"; // identifier of the saved modes
+            const DEFAULT_MODES = ["75", "125", "150"]; // local storage will saves everything as strings and these values will be URI parameters so it is fine to not use integers
+            const MODE_CONTAINER_ELEMENT_ID = "mode-container"; // Note: if you change this, please also change the corresponding id in HTML element
+
+            /* 
+             * Returns the saved modes from the local storage as asn array of strings.
+             * Example -> ["75", "125", "150"]
+             */ 
+            const getModes = () => {
+               let modes = localStorage.getItem(LOCALSTORAGE_ITEM_NAME);
+               // check if the item exists, otherwise initialize it with the default values
+               if (modes) {
+                  return JSON.parse(modes);
+               }
+               else {
+                  localStorage.setItem(LOCALSTORAGE_ITEM_NAME, JSON.stringify(DEFAULT_MODES)); 
+                  return DEFAULT_MODES;
+               }
+            }
+
+            /*
+             * Creates a button for which represents the mode. This button is also clickable and will do a request to the server for changing the tables height.
+             * Example for an created element:  <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/150">Mode 3 - 150 cm</a>
+             */
+            const createModeElement = (id, height) => {
+               let button = document.createElement("a"); // create the element
+               ++id; // increment id because we want it to start at 1
+
+               button.type = "button";
+               button.className = "btn btn-lg btn-block btn-primary";
+               button.href = "/height/" + height;
+               button.innerHTML = "Mode " + id + " - " + height + " cm";
+
+               return button; // return the element which now holds all necessary info
+            }
+
+            /*
+             * Adds all passed modes to the modes container so that they are being displayed.
+             */
+            const displayModes = (modes) => {
+               let modeContainer = document.getElementById("mode-container");
+               // Create and immediately append an element for each mode as a child of the container
+               for (i in modes) {
+                  let newMode = createModeElement(modes.indexOf(i), i);
+                  modeContainer.appendChild(newMode);
+               }
+            }
+
+            // get all locally saved modes
+            let foundModes = getModes();
+
+            // display all of the locally saved modes
+            displayModes(foundModes);
+         </script> 
+
      </body>
   </html>
 )=====";
