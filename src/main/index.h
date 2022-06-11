@@ -100,8 +100,6 @@ const char MAIN_page[] PROGMEM = R"=====(
              */
             const createModeElement = (id, height) => {
                let button = document.createElement("a"); // create the element
-               ++id; // increment id because we want it to start at 1
-
                button.type = "button";
                button.className = "btn btn-lg btn-block btn-primary";
                button.href = "/height/" + height;
@@ -117,8 +115,8 @@ const char MAIN_page[] PROGMEM = R"=====(
                let modeContainer = document.getElementById("mode-container");
                // Create and immediately append an element for each mode as a child of the container
                for (i in modes) {
-                  let newMode = createModeElement(modes.indexOf(i), i);
-                  modeContainer.appendChild(newMode);
+                  let newMode = createModeElement(parseInt(i)+1, modes[i]); // Create the element, Note: +1 because it shall start at 1 -> "Mode 1 - 75 cm"
+                  modeContainer.appendChild(newMode); // Add element to DOM
                }
             }
 
