@@ -6,7 +6,7 @@ Web Dashboard for controlling a Ikea Skarsta/Trotten table which comes from the 
 The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison this project uses a website ("web dashboard") for controlling the table height and a ultrasonic sensor for measuring the height instead of an optical endstop. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
 
 ## Showcase
-TBD
+![](res/dashboard.png)
 
 ## Circuit
 This circuit ([source file](res/circuit.fzz)) was designed with [Fritzing](https://fritzing.org/). Please see the hardware section near the end of the README for a detailed list of the used hardware components which are shown in the circuit.
