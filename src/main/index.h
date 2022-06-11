@@ -7,7 +7,7 @@ const char MAIN_page[] PROGMEM = R"=====(
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
-        <title>Mellis Schreibtisch-App</title>
+        <title>Ikea Skarsta/Trotten Dashboard</title>
         <link rel="stylesheet" href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <style>
@@ -35,7 +35,7 @@ const char MAIN_page[] PROGMEM = R"=====(
      </head>
      <body>
         <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom box-shadow">
-           <h5 class="my-0 mr-md-auto font-weight-normal">Mellis Schreibtisch-App</h5>
+           <h5 class="my-0 mr-md-auto font-weight-normal">Ikea Skarsta/Trotten</h5>
         </div>
         <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
            <h1 class="display-4">Dashboard</h1>
@@ -63,7 +63,7 @@ const char MAIN_page[] PROGMEM = R"=====(
                     <ul class="list-unstyled mt-3 mb-4">
                        <li>Höhenverstellung auf voreingestellte Modi</li>
                     </ul>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/100">Modus 1 - 100 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/75">Modus 1 - 75 cm</a>
                     <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/125">Modus 2 - 125 cm</a>
                     <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/150">Modus 3 - 150 cm</a>
                  </div>
