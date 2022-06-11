@@ -145,7 +145,7 @@ void setup(void) {
  */
 void raiseTable() {
   if(MAX_HEIGHT > current_height){
-   motor.set_speed(motor_speed)
+   motor.set_speed(motor_speed);
   }
 }
 
@@ -155,7 +155,7 @@ void raiseTable() {
  */
 void lowerTable() {
   if(MIN_HEIGHT < current_height){
-    motor.set_speed(-motor_speed) // two's complement for negating the integer
+    motor.set_speed(-motor_speed); // two's complement for negating the integer
   }
 }
 
@@ -164,7 +164,7 @@ void lowerTable() {
  * Stop the table at the current height
  */
 void stopTable() {
-   motor.set_speed(0)
+   motor.set_speed(0);
 }
 
 
