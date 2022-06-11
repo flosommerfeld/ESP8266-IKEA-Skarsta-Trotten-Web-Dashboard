@@ -44,11 +44,11 @@ const char MAIN_page[] PROGMEM = R"=====(
            <div class="card-deck mb-3 text-center">
               <div class="card mb-4 box-shadow">
                  <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Kontrolle</h4>
+                    <h4 class="my-0 font-weight-normal">Controls</h4>
                  </div>
                  <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-4">
-                       <li>Manuelles Steuern des Motors</li>
+                       <li>Manual height adjustment</li>
                     </ul>
                     <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="/motor/up"><i class="bi bi-arrow-up-square-fill"></i></a>
                     <a type="button" class="btn btn-lg btn-block btn-outline-primary" href="/motor/stop"><i class="bi bi-pause-btn-fill"></i></a>
@@ -57,15 +57,15 @@ const char MAIN_page[] PROGMEM = R"=====(
               </div>
               <div class="card mb-4 box-shadow">
                  <div class="card-header">
-                    <h4 class="my-0 font-weight-normal">Modi</h4>
+                    <h4 class="my-0 font-weight-normal">Modes</h4>
                  </div>
                  <div class="card-body">
                     <ul class="list-unstyled mt-3 mb-4">
-                       <li>Höhenverstellung auf voreingestellte Modi</li>
+                       <li>Predefined modes</li>
                     </ul>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/75">Modus 1 - 75 cm</a>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/125">Modus 2 - 125 cm</a>
-                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/150">Modus 3 - 150 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/75">Mode 1 - 75 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/125">Mode 2 - 125 cm</a>
+                    <a type="button" class="btn btn-lg btn-block btn-primary" href="/height/150">Mode 3 - 150 cm</a>
                  </div>
               </div>
            </div>

@@ -1,9 +1,9 @@
 # ESP8266-Ikea-Skarsta-Trotten-Web-Dashboard
 ![arduino build workflow](https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/actions/workflows/build-arduino-sketches.yml/badge.svg)
 
-Web Dashboard for controlling a Ikea Skarsta/Trotten table which comes from the factory with manual height adjustment.
+Web Dashboard for controlling an Ikea Skarsta/Trotten table which comes from the factory with manual height adjustment.
 
-The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison this project uses a website ("web dashboard") for controlling the table height and a ultrasonic sensor for measuring the height instead of an optical endstop. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
+The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison, this project uses a website ("web dashboard") for controlling the table height and a ultrasonic sensor for measuring the height instead of an optical endstop. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
 
 ## Showcase
 ![](res/dashboard.png)
@@ -13,7 +13,7 @@ This circuit ([source file](res/circuit.fzz)) was designed with [Fritzing](https
 ![](res/circuit.png)
 
 ## 3D Model
-As previously mentioned, the [3D models](#credits) of user pashiran were used in this project.
+The [3D models](#credits) of user pashiran were used and adapted in this project.
 Small holes were drilled into the table in order to screw the `Body1.stl` with M3 screws to it. After installing `Body1.stl`, the  `Body3.stl` (case) was screwed on to it.  Some M3 insert nuts were installed to `Body1.stl` with a soldering iron.
 
 Body1.stl ([Download](https://content.instructables.com/ORIG/FHK/3039/KJWV4CPV/FHK3039KJWV4CPV.stl)) | Body3.stl ([Download](https://content.instructables.com/ORIG/F6Q/4HMT/KJWV4CPX/F6Q4HMTKJWV4CPX.stl))
@@ -38,7 +38,7 @@ Used dependencies for this project are:
 The dependencies can be installed via the [standard procedure for installing Arduino libraries](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries):
 
 1. Open the Arduino IDE, select `Sketch` -> `Include Library` -> `Manage Libraries...`.
-2. Search for `Cytron Motor Drivers Library`/`HCSR04 ultrasonic sensor Library`.
+2. Search for `Cytron Motor Drivers Library by Cytron Technologies Sdn Bhd`/`HCSR04 ultrasonic sensor Library by gamegine`.
 3. Click `Install` to install the library.
 4. Restart the Arduino IDE.
 
@@ -64,3 +64,5 @@ Total costs approx. 48 € if you are patient enough to wait for the Aliexpress 
 
 ## Credits
 - [3D design files](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) by user pashiran
+- [Arduino library for HCSR04 ultrasonic sensor](https://github.com/gamegine/HCSR04-ultrasonic-sensor-lib) by gamegine
+- [Arduino library for Cytron Motor Drivers](https://github.com/CytronTechnologies/CytronMotorDriver) by Cytron
