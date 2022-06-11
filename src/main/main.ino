@@ -14,27 +14,27 @@
 #ifndef STASSID
 #define STASSID "SSID of the WLAN router" // PUT YOUR "WIFI NAME" HERE
 #define STAPSK  "passphrase" // PUT YOUR WIFI PASSWORD HERE
-#define HOSTNAME  "table" // Optional hostname
+#define OPT_HOSTNAME  "table" // Optional hostname
 #endif
-const char *ssid = STASSID;
-const char *password = STAPSK;
-const char *hostname = HOSTNAME;
+const char *SSID = STASSID;
+const char *PASSWORD = STAPSK;
+const char *HOSTNAME = OPT_HOSTNAME;
 
 /* Pin configuration */
-#define motor_driver_pwm D4 // pwm pin for the motor driver board
-#define motor_driver_dir D3 // direction pin for the motor driver board
-#define motor_speed 255 // speed of the motor from 0-250
-#define echoPin D7 // HC-SR04 ultrasonic sensor - Echo Pin 
-#define trigPin D6 // HC-SR04 ultrasonic sensor - Trigger Pin
+#define MOTOR_DRIVER_PWM D4 // pwm pin for the motor driver board
+#define MOTOR_DRIVER_DIR D3 // direction pin for the motor driver board
+#define MOTOR_SPEED 255 // speed of the motor from 0-250
+#define ULTRASONIC_SENSOR_ECHO_PIN D7 // HC-SR04 ultrasonic sensor - Echo Pin 
+#define ULTRASONIC_SENSOR_TRIGGER_PIN D6 // HC-SR04 ultrasonic sensor - Trigger Pin
 
 /* Configure ESP8266 web server */
 ESP8266WebServer server(80); // use port 80
 
 /* Configure the motor driver */
-CytronMD motor(PWM_DIR, motor_driver_pwm, motor_driver_dir);
+CytronMD motor(PWM_DIR, MOTOR_DRIVER_PWM, MOTOR_DRIVER_DIR);
 
 /* Configure ultrasonic sensor */
-HCSR04 hc(trigPin, echoPin); // initialisation HCSR04 (ultrasonic sensor) (trig pin , echo pin)
+HCSR04 hc(ULTRASONIC_SENSOR_TRIGGER_PIN, ULTRASONIC_SENSOR_ECHO_PIN); // initialisation HCSR04 (ultrasonic sensor) (trig pin , echo pin)
 
 /* States of the system */
 typedef enum {
@@ -62,7 +62,7 @@ int g_custom_height;
  * Displays the index/main page in the browser of the client
  */
 void display_index() {
- String s = MAIN_page; // read HTML contents
+ String s = MAIN_page; // read HTML contents from the MAIN_page variable which was stored in the flash (program) memory instead of SRAM, see index.h
  server.send(200, "text/html", s); // send web page
 }
 
@@ -75,6 +75,7 @@ void send_homepage_redirection(){
   server.sendHeader("Location","/"); // Client shall redirect to "/"
   server.send(303);
 }
+
 
 /*
  * Handles calls to the URI /motor/<string: action>/ and does state transitions:
@@ -119,22 +120,24 @@ void handle_height_requests() {
   send_homepage_redirection();
 }
 
+
 /**
  * Setup the output pins
  */
 void setup_pins(){
   // Pin setup for motor controller
-  pinMode(motor_driver_pwm, OUTPUT);
-  pinMode(motor_driver_dir, OUTPUT);
+  pinMode(MOTOR_DRIVER_PWM, OUTPUT);
+  pinMode(MOTOR_DRIVER_DIR, OUTPUT);
 }
+
 
 /**
  * Takes care of the wifi configuration
  */
 void setup_wifi(){
   WiFi.mode(WIFI_STA);
-  WiFi.hostname(hostname); // set hostname
-  WiFi.begin(ssid, password);
+  WiFi.HOSTNAME(HOSTNAME); // set HOSTNAME
+  WiFi.begin(SSID, PASSWORD);
 
    // Wait for wifi connection
     while (WiFi.status() != WL_CONNECTED) {
@@ -151,16 +154,16 @@ void setup_wifi(){
 
 /**
  * Print information about the wifi connection:
- * SSID, IP, Hostname
+ * SSID, IP, HOSTNAME
  */
 void print_connection_info(){
   // Print connection info
   Serial.print("Connected to ");
-  Serial.println(ssid);
+  Serial.println(SSID);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
-  Serial.print("Hostname: ");
-  Serial.println(WiFi.hostname().c_str());
+  Serial.print("HOSTNAME: ");
+  Serial.println(WiFi.HOSTNAME().c_str());
 }
 
 
@@ -168,10 +171,11 @@ void print_connection_info(){
  * Register the routes of the server
  */
 void register_server_routes(){
-  server.on(F("/"), displayIndex); // route: /
+  server.on(F("/"), display_index); // route: /
   server.on(UriBraces("/motor/{}"), handle_motor_requests); // route: /motor/<string: action>/
   server.on(UriBraces("/height/{}"), handle_height_requests); // route: /height/<string: height_in_cm>/ 
 }
+
 
 /*
  * Login to the network, setup the server and register URI call handlers.
@@ -198,7 +202,7 @@ void setup(void) {
  * ultrasonic sensor.
  */
 int get_current_height(){
-  delay(100); // 60 ms measurement cycle to prevent trigger signal to the echo signal
+  delay(100); // > 60 ms measurement cycle to prevent trigger signal to the echo signal
   Serial.print("Current table height");
   Serial.println(hc.dist());
   return hc.dist(); // return height
@@ -210,7 +214,7 @@ int get_current_height(){
  */
 void raise_table() {
   if(MAX_HEIGHT >= get_current_height()){
-   motor.setSpeed(motor_speed);
+   motor.setSpeed(MOTOR_SPEED);
   }
   else {
     g_system_state = HOLD;  
@@ -223,7 +227,7 @@ void raise_table() {
  */
 void lower_table() {
   if(MIN_HEIGHT <= get_current_height()){
-    motor.setSpeed(-motor_speed); // two's complement for negating the integer
+    motor.setSpeed(-MOTOR_SPEED); // two's complement for negating the integer
   }
   else {
     g_system_state = HOLD;  
