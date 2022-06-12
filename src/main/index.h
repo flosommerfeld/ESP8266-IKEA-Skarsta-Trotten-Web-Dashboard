@@ -78,15 +78,57 @@ const char MAIN_page[] PROGMEM = R"=====(
                       
                  </div>
               </div>
+              
            </div>
+        </div>
+        <div class="container">
+         <div class="card mb-4 box-shadow h-100">
+            <div class="card-header">
+               <h4 class="my-0 font-weight-normal">Height</h4>
+            </div>
+            <div class="card-body">
+               <div class="progress">
+                  <div id="height-value" class="progress-bar" role="progressbar" style="width: 0%;"></div>
+                </div>
+            </div>
+         </div>
         </div>
 
          <script>
             const LOCALSTORAGE_ITEM_NAME = "modes"; // identifier of the saved modes
             const DEFAULT_MODES = ["65", "75", "125"]; // local storage will saves everything as strings and these values will be URI parameters so it is fine to not use integers
             const MODE_CONTAINER_ELEMENT_ID = "mode-container"; // Note: if you change this, please also change the corresponding id in HTML element
+            const HEIGHT_VALUE_ELEMENT_ID = "height-value"; // Note: if you change this, please also change the corresponding id in HTML element
             const MIN_MODE_HEIGHT = 65;
             const MAX_MODE_HEIGHT = 125;
+            
+
+            /*
+             * Takes care of correctly setting the table height in the progess bar.
+             * The height will be shown in percentage -> 100% = max height
+             */ 
+            const setHeightInProgessBar = (height) => {
+               let progessBar = document.getElementById(HEIGHT_VALUE_ELEMENT_ID);
+               progessBar.innerHTML = height + " cm"; // add text to the progress bar
+               progessBar.style.width = ((height / MAX_MODE_HEIGHT) * 100) + "%"; // set progress by calculating the percentage of the current height
+            }
+
+
+            /*
+             *  Returns the height of the table, measured with the ultrasonic sensor, by performing a XMLHttp request
+             */
+            const getHeight = () => {
+               let request = new XMLHttpRequest();
+
+               // is fired when readyState property changes
+               request.onreadystatechange = function() {
+                  if (this.readyState == 4 && this.status == 200) { // readyState 4 = DONE, see https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState
+                     setHeightInProgessBar(this.responseText);
+                  }
+               };
+               request.open("GET", "height", true);
+               request.send();
+            }
 
 
             /* 
@@ -187,7 +229,7 @@ const char MAIN_page[] PROGMEM = R"=====(
              * Adds all passed modes to the modes container so that they are being displayed.
              */
             const displayModes = (modes) => {
-               let modeContainer = document.getElementById("mode-container");
+               let modeContainer = document.getElementById(MODE_CONTAINER_ELEMENT_ID);
                // Create and immediately append an element for each mode as a child of the container
                for (i in modes) {
                   let newMode = createModeElement(parseInt(i), modes[i]); // Create the element
@@ -201,6 +243,11 @@ const char MAIN_page[] PROGMEM = R"=====(
 
             // display all of the locally saved modes
             displayModes(foundModes);
+
+            // request the current table height every 2000 ms
+            setInterval(function() {
+               getHeight(); // AJAX call
+            }, 2000); 
          </script> 
 
      </body>
