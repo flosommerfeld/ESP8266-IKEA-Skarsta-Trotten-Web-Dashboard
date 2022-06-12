@@ -66,3 +66,4 @@ Total costs approx. 48 € if you are patient enough to wait for the Aliexpress 
 - [3D design files](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) by user pashiran
 - [Arduino library for HCSR04 ultrasonic sensor](https://github.com/gamegine/HCSR04-ultrasonic-sensor-lib) by gamegine
 - [Arduino library for Cytron Motor Drivers](https://github.com/CytronTechnologies/CytronMotorDriver) by Cytron
+- [Arduino ESP8266 Web Server library](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer) by Arduino
