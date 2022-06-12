@@ -87,3 +87,7 @@ Total costs approx. 48 € if you are patient enough to wait for the Aliexpress 
 - [Arduino library for Cytron Motor Drivers](https://github.com/CytronTechnologies/CytronMotorDriver) by Cytron
 - [Arduino ESP8266 Web Server library](https://github.com/esp8266/Arduino/tree/master/libraries/ESP8266WebServer) by Arduino
 - [Bootstrap HTML, CSS, JS Framework](https://getbootstrap.com/) by Bootstrap
+
+## License
+
+The contents of this repository are covered under the [GPLv3 license](LICENSE).
