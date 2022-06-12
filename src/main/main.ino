@@ -127,7 +127,7 @@ void handle_height_requests() {
  */
 void handle_height_requests() {
   int height = get_current_height();
-  server.send(200, "text/plane", String(height));
+  server.send(200, "text/plain", String(height));
 }
 
 
