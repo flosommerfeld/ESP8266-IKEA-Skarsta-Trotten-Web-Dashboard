@@ -1,14 +1,38 @@
-# ESP8266-Ikea-Skarsta-Trotten-Web-Dashboard
+<h1>
+  <p align="center">
+     ESP8266 Ikea Skarsta/Trotten Web Dashboard
+  </p>
+</h1> 
 
-![arduino build workflow](https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/actions/workflows/build-arduino-sketches.yml/badge.svg)
-
+<p align="center">
 ESP8266 project for adjusting the height of an Ikea Skarsta/Trotten table via a Web Dashboard.
+</p>
 
+<p align="center">
 The table only comes with a crank from the factory - this project replaces the manual crank with a motor so there is no more need for manual cranking. This project aims to show you how to digitize an Ikea table.
+</p>
+
+<div align="center">
+   <a href="https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/stargazers"><img src="https://img.shields.io/github/stars/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard.svg?style=plasticr"/></a>
+   <img src="https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/actions/workflows/build-arduino-sketches.yml/badge.svg?style=plasticr"/>
+</div>
+
+<p align="center">
+  <a href="#showcase">Showcase</a> •
+  <a href="#features">Features</a> •
+  <a href="#circuit">Circuit</a> •
+  <a href="#3d-model"> 3D Model</a> •
+  <a href="#finite-state-machine">Finite State Machine</a> •
+  <a href="#dependencies">Dependencies</a> •
+  <a href="#hardware">Hardware</a> •
+  <a href="#credits">Credits</a> •
+  <a href="#license">License</a>
+</p>
 
 ## Showcase
 
 ![Dashboard](res/img/dashboard.png)
+
 
 ## Features
 
