@@ -125,7 +125,7 @@ void handle_height_requests() {
  * Handles calls to the URI /height/
  * Responds with the current height of the ultrasonic sensor
  */
-void handle_height_requests() {
+void handle_read_height_requests() {
   int height = get_current_height();
   server.send(200, "text/plain", String(height));
 }
