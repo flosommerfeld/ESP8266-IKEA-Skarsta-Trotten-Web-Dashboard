@@ -2,9 +2,9 @@
 
 ![arduino build workflow](https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/actions/workflows/build-arduino-sketches.yml/badge.svg)
 
-Web Dashboard for controlling an Ikea Skarsta/Trotten table which comes from the factory with manual height adjustment.
+ESP8266 project for adjusting the height of an Ikea Skarsta/Trotten table via a Web Dashboard.
 
-The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison, this project uses a website ("web dashboard") for controlling the table height and a ultrasonic sensor for measuring the height instead of an optical endstop. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
+The table only comes with a crank from the factory - this project replaces the manual crank with a motor so there is no more need for manual cranking. This project aims to show you how to digitize an Ikea table.
 
 ## Showcase
 
@@ -58,6 +58,8 @@ The dependencies can be installed via the [standard procedure for installing Ard
 4. Restart the Arduino IDE.
 
 ## Hardware
+
+The hardware selection and 3D models of this project are mainly based on the [Instructable](https://www.instructables.com/Motorizing-an-IKEA-SKARSTA-Table/) of user pashiran. In comparison, this project uses a website ("web dashboard") for controlling the table height and a ultrasonic sensor for measuring the height instead of an optical endstop. There are no hardware switches, just the website which can be accessed via the hosted ESP8266 server (which shall be in the same network as your clients).
 
 - Development Board:
   - [WeMos D1 Mini Pro V 3,0 NodeMcu 4MB/16MB ESP8266 CH340G Nodemcu V2](https://de.aliexpress.com/item/32831353752.html?gatewayAdapt=glo2deu&spm=a2g0o.order_list.0.0.21ef5c5fNLvT1b)
