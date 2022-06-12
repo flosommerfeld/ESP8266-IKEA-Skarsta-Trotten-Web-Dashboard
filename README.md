@@ -1,20 +1,20 @@
 <h1>
   <p align="center">
-     ESP8266 Ikea Skarsta/Trotten Web Dashboard
+     ESP8266 IKEA Skarsta/Trotten Web Dashboard
   </p>
 </h1> 
 
 <p align="center">
-ESP8266 project for adjusting the height of an Ikea Skarsta/Trotten table via a Web Dashboard.
+ESP8266 project for adjusting the height of an <a href="https://www.ikea.com/de/de/p/trotten-schreibtisch-sitz-steh-weiss-s99429578/?utm_source=google&utm_medium=surfaces&utm_campaign=shopping_feed&utm_content=free_google_shopping_clicks_Workspaces">IKEA Skarsta/Trotten table</a> via a Web Dashboard.
 </p>
 
 <p align="center">
-The table only comes with a crank from the factory - this project replaces the manual crank with a motor so there is no more need for manual cranking. This project aims to show you how to digitize an Ikea table.
+The table only comes with a crank from the factory - this project replaces the manual crank with a motor so there is no more need for manual cranking. This project aims to show you how to digitize an IKEA table.
 </p>
 
 <div align="center">
-   <a href="https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/stargazers"><img src="https://img.shields.io/github/stars/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard.svg?style=plasticr"/></a>
-   <img src="https://github.com/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard/actions/workflows/build-arduino-sketches.yml/badge.svg?style=plasticr"/>
+   <a href="https://github.com/flosommerfeld/ESP8266-IKEA-Skarsta-Web-Dashboard/stargazers"><img src="https://img.shields.io/github/stars/flosommerfeld/ESP8266-Ikea-Skarsta-WebDashboard.svg?style=plasticr"/></a>
+   <img src="https://github.com/flosommerfeld/ESP8266-IKEA-Skarsta-Web-Dashboard/actions/workflows/build-arduino-sketches.yml/badge.svg?style=plasticr"/>
 </div>
 
 <p align="center">
