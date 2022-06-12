@@ -121,6 +121,16 @@ void handle_height_requests() {
 }
 
 
+/*
+ * Handles calls to the URI /height/
+ * Responds with the current height of the ultrasonic sensor
+ */
+void handle_height_requests() {
+  int height = get_current_height();
+  server.send(200, "text/plane", String(height));
+}
+
+
 /**
  * Setup the output pins
  */
@@ -173,7 +183,8 @@ void print_connection_info(){
 void register_server_routes(){
   server.on(F("/"), display_index); // route: /
   server.on(UriBraces("/motor/{}"), handle_motor_requests); // route: /motor/<string: action>/
-  server.on(UriBraces("/height/{}"), handle_height_requests); // route: /height/<string: height_in_cm>/ 
+  server.on(UriBraces("/height/{}"), handle_height_requests); // route: /height/<string: height_in_cm>/
+  server.on(UriBraces("/height"), handle_read_height_requests); // route: /height/ - is being called from client javascript
 }
 
 
