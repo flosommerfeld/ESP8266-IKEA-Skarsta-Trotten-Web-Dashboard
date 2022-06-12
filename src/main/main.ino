@@ -48,7 +48,7 @@ typedef enum {
 state_t g_system_state = HOLD; //
 
 /* Maximum and minimum height of the table in cm */
-const unsigned int MAX_HEIGHT = 160;
+const unsigned int MAX_HEIGHT = 130;
 const unsigned int MIN_HEIGHT = 60;
 
 /* Height tolerance (in cm) which is needed because the ultrasonic sensor is not really accurate */
