@@ -146,7 +146,7 @@ void setup_pins(){
  */
 void setup_wifi(){
   WiFi.mode(WIFI_STA);
-  WiFi.HOSTNAME(HOSTNAME); // set HOSTNAME
+  WiFi.hostname(OPT_HOSTNAME); // set HOSTNAME
   WiFi.begin(SSID, PASSWORD);
 
    // Wait for wifi connection
@@ -173,7 +173,7 @@ void print_connection_info(){
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
   Serial.print("HOSTNAME: ");
-  Serial.println(WiFi.HOSTNAME().c_str());
+  Serial.println(WiFi.hostname().c_str());
 }
 
 
