@@ -270,7 +270,7 @@ void handle_output(){
             break;
         case CUSTOM_HEIGHT:
           // adjust the table height until the height tolerance is ok, e.g.: abs(150-130) = 20, abs(150-170) = 20
-          while(abs(g_custom_height - get_current_height()) >= HEIGHT_TOLERANCE){
+          if(abs(g_custom_height - get_current_height()) >= HEIGHT_TOLERANCE){
             // check if the table is too high or too low and adjust
             if(g_custom_height < get_current_height()){
               lower_table(); // lower the table
@@ -280,11 +280,12 @@ void handle_output(){
             }
             
           }
-
-          // adjustment is finished, transistion to the hold state to stop the motor
-          g_system_state = HOLD;
+          else{
+            // adjustment is finished, transistion to the hold state to stop the motor
+            g_system_state = HOLD;
+          }
           
-            break;
+          break;
         default:
             // stop the motor by transitioning to the hold state
             g_system_state = HOLD;
