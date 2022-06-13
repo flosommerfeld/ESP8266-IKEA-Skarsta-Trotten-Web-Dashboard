@@ -71,7 +71,7 @@ void display_index() {
  * The server sends a redirection response to the client so it will go back to the homepage after requesting a state change,
  * e.g. when motor up was clicked it shall go back to the homepage
  */
-void send_homepage_redirection(){
+void send_homepage_redirection() {
   server.sendHeader("Location","/"); // Client shall redirect to "/"
   server.send(303);
 }
@@ -134,7 +134,7 @@ void handle_read_height_requests() {
 /**
  * Setup the output pins
  */
-void setup_pins(){
+void setup_pins() {
   // Pin setup for motor controller
   pinMode(MOTOR_DRIVER_PWM, OUTPUT);
   pinMode(MOTOR_DRIVER_DIR, OUTPUT);
@@ -144,7 +144,7 @@ void setup_pins(){
 /**
  * Takes care of the wifi configuration
  */
-void setup_wifi(){
+void setup_wifi() {
   WiFi.mode(WIFI_STA);
   WiFi.hostname(OPT_HOSTNAME); // set HOSTNAME
   WiFi.begin(SSID, PASSWORD);
@@ -166,7 +166,7 @@ void setup_wifi(){
  * Print information about the wifi connection:
  * SSID, IP, HOSTNAME
  */
-void print_connection_info(){
+void print_connection_info() {
   // Print connection info
   Serial.print("Connected to ");
   Serial.println(SSID);
@@ -180,7 +180,7 @@ void print_connection_info(){
 /**
  * Register the routes of the server
  */
-void register_server_routes(){
+void register_server_routes() {
   server.on(F("/"), display_index); // route: /
   server.on(UriBraces("/motor/{}"), handle_motor_requests); // route: /motor/<string: action>/
   server.on(UriBraces("/height/{}"), handle_height_requests); // route: /height/<string: height_in_cm>/
@@ -212,7 +212,7 @@ void setup(void) {
  * Retrieves the current height of the table by getting the distance of the
  * ultrasonic sensor.
  */
-int get_current_height(){
+int get_current_height() {
   delay(100); // > 60 ms measurement cycle to prevent trigger signal to the echo signal
   Serial.print("Current table height");
   Serial.println(hc.dist());
@@ -224,8 +224,8 @@ int get_current_height(){
  * Raise the table until the max height is reached
  */
 void raise_table() {
-  if(MAX_HEIGHT >= get_current_height()){
-   motor.setSpeed(MOTOR_SPEED);
+  if(MAX_HEIGHT >= get_current_height()) {
+    motor.setSpeed(MOTOR_SPEED);
   }
   else {
     g_system_state = HOLD;  
@@ -237,7 +237,7 @@ void raise_table() {
  * Lower the table until the min height is reached
  */
 void lower_table() {
-  if(MIN_HEIGHT <= get_current_height()){
+  if(MIN_HEIGHT <= get_current_height()) {
     motor.setSpeed(-MOTOR_SPEED); // two's complement for negating the integer
   }
   else {
@@ -257,7 +257,7 @@ void stop_table() {
 /*
  * Controls the motor based on the system state g_system_state. This is pretty much the core FSM implementation for the state transistions.
  */
-void handle_output(){
+void handle_output() {
   switch (g_system_state) {
         case UP:
             raise_table(); // motor go up
@@ -270,9 +270,9 @@ void handle_output(){
             break;
         case CUSTOM_HEIGHT:
           // adjust the table height until the height tolerance is ok, e.g.: abs(150-130) = 20, abs(150-170) = 20
-          while(abs(g_custom_height - get_current_height()) >= HEIGHT_TOLERANCE){
+          if(abs(g_custom_height - get_current_height()) >= HEIGHT_TOLERANCE) {
             // check if the table is too high or too low and adjust
-            if(g_custom_height < get_current_height()){
+            if(g_custom_height < get_current_height()) {
               lower_table(); // lower the table
             }
             else{
@@ -280,11 +280,12 @@ void handle_output(){
             }
             
           }
+          else {
+            // adjustment is finished, transistion to the hold state to stop the motor
+            g_system_state = HOLD;
+          }
 
-          // adjustment is finished, transistion to the hold state to stop the motor
-          g_system_state = HOLD;
-          
-            break;
+          break;
         default:
             // stop the motor by transitioning to the hold state
             g_system_state = HOLD;
