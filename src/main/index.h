@@ -81,7 +81,7 @@ const char MAIN_page[] PROGMEM = R"=====(
                   <div id="mode-container" class=""><!-- This is the element into which the modes from the local storage will be loaded --></div>
 
                   <div class="input-group mb-3">
-                      <input id="input" type="number" class="form-control" placeholder="Height in cm (min: 65, max: 125)" aria-label="" min="60" max="170">
+                      <input id="input" type="number" class="form-control" placeholder="Height in cm (min: 70, max: 120)" aria-label="" min="70" max="120">
                       <div class="input-group-append">
                           <button onclick="addMode(getElementById('input').value)" class="btn btn-outline-secondary" type="button"><i class="bi bi-plus-square-fill"></i></button>
                       </div>
@@ -107,11 +107,11 @@ const char MAIN_page[] PROGMEM = R"=====(
 
        <script>
           const LOCALSTORAGE_ITEM_NAME = "modes"; // identifier of the saved modes
-          const DEFAULT_MODES = ["65", "75", "125"]; // local storage will saves everything as strings and these values will be URI parameters so it is fine to not use integers
+          const DEFAULT_MODES = ["70", "95", "120"]; // local storage will saves everything as strings and these values will be URI parameters so it is fine to not use integers
           const MODE_CONTAINER_ELEMENT_ID = "mode-container"; // Note: if you change this, please also change the corresponding id in HTML element
           const HEIGHT_VALUE_ELEMENT_ID = "height-value"; // Note: if you change this, please also change the corresponding id in HTML element
-          const MIN_MODE_HEIGHT = 65;
-          const MAX_MODE_HEIGHT = 125;
+          const MIN_MODE_HEIGHT = 70;
+          const MAX_MODE_HEIGHT = 120;
           
 
           /*

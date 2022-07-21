@@ -48,11 +48,14 @@ typedef enum {
 state_t g_system_state = HOLD; //
 
 /* Maximum and minimum height of the table in cm */
-const unsigned int MAX_HEIGHT = 130;
-const unsigned int MIN_HEIGHT = 60;
+const unsigned int MOTOR_CASE_HEIGHT = 5; /* 5 cm */
+const unsigned int TABLE_THICKNESS = 2; /* approx. 2 cm */
+const unsigned int HEIGHT_DIFFERENCE = MOTOR_CASE_HEIGHT + TABLE_THICKNESS;
+const unsigned int MAX_HEIGHT = 120;/* 120 cm is the offical maximum height from the IKEA manual */
+const unsigned int MIN_HEIGHT = 70; /* 70 cm is the offical minimum height from the IKEA manual */
 
 /* Height tolerance (in cm) which is needed because the ultrasonic sensor is not really accurate */
-const unsigned int HEIGHT_TOLERANCE = 5;
+const unsigned int HEIGHT_TOLERANCE = 2; /* This used to be 5 cm but was reduced to 2 because of how slow the table motor is */
 
 /* Global variable which shall hold the wanted custom height when requested */
 int g_custom_height;
@@ -216,7 +219,7 @@ int get_current_height() {
   delay(100); // > 60 ms measurement cycle to prevent trigger signal to the echo signal
   Serial.print("Current table height");
   Serial.println(hc.dist());
-  return hc.dist(); // return height
+  return hc.dist() + HEIGHT_DIFFERENCE; // return height
 }
 
 
